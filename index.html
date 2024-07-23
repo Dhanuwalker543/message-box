@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Selector</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(45deg, #f06, #00f);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        select {
+            padding: 10px;
+            border-radius: 8px;
+            border: 2px solid #007BFF;
+            outline: none;
+            width: calc(100% - 24px);
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            background-color: #007BFF;
+            cursor: pointer;
+            position: relative;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            margin: 5px;
+            outline: none;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #FF0000, #FF7300, #FFFB00, #48FF00, #00FFD5, #002BFF, #FF00C8, #FF0000);
+            filter: blur(8px);
+            z-index: -1;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .btn:hover::before {
+            opacity: 1;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .btn:active {
+            background-color: #004080;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <label for="questionSelect">Select a question:</label>
+        <select id="questionSelect" onchange="showAnswer()">
+            <option value="">--Select a question--</option>
+            <option value="question1">What is the capital of France?</option>
+            <option value="question2">What is the largest planet in our solar system?</option>
+            <option value="question3">Who wrote 'To Kill a Mockingbird'?</option>
+            <option value="question4">What is the speed of light?</option>
+            <option value="question5">Who developed the theory of relativity?</option>
+            <option value="question6">What is the smallest prime number?</option>
+        </select>
+        <div id="answerContainer">
+            <p id="answer">Please select a question to see the answer.</p>
+            <button class="btn" onclick="acceptAnswer()">Accept</button>
+            <button class="btn" onclick="declineAnswer()">Decline</button>
+        </div>
+    </div>
+
+    <script>
+        function showAnswer() {
+            var select = document.getElementById("questionSelect");
+            var answer = document.getElementById("answer");
+
+            if (select.value === "question1") {
+                answer.textContent = "The capital of France is Paris.";
+            } else if (select.value === "question2") {
+                answer.textContent = "The largest planet in our solar system is Jupiter.";
+            } else if (select.value === "question3") {
+                answer.textContent = "To Kill a Mockingbird was written by Harper Lee.";
+            } else if (select.value === "question4") {
+                answer.textContent = "The speed of light is approximately 299,792 kilometers per second.";
+            } else if (select.value === "question5") {
+                answer.textContent = "The theory of relativity was developed by Albert Einstein.";
+            } else if (select.value === "question6") {
+                answer.textContent = "The smallest prime number is 2.";
+            } else {
+                answer.textContent = "Please select a question to see the answer.";
+            }
+        }
+
+        function acceptAnswer() {
+            alert("You accepted the answer!");
+        }
+
+        function declineAnswer() {
+            alert("You declined the answer!");
+        }
+    </script>
+</body>
+
+</html>
